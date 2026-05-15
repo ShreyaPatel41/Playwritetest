@@ -2,21 +2,8 @@ const { test, expect, chromium } = require('@playwright/test');
 const { TryGroundedSessioncheck } = require('../pageObjects/TryGroundedSessioncheck');
 const { Responseaudit } = require('../pageObjects/Responseaudit');
 
-test("check session", async ({ }, testInfo) => {
+test("check session", async ({ page }) => {
     test.setTimeout(120000);
-
-    const browserContext = await chromium.launchPersistentContext('./automation-profile', {
-        headless: process.env.CI ? true : false,
-        channel: 'chrome',
-        recordVideo: {
-            dir: 'test-results/videos/' // Automatically records video of the session
-        }
-    });
-
-    // Start tracing to capture full evidence of all steps and network requests
-    await browserContext.tracing.start({ screenshots: true, snapshots: true, sources: true });
-
-    const page = browserContext.pages().length > 0 ? browserContext.pages()[0] : await browserContext.newPage();
     const check = new TryGroundedSessioncheck(page);
     await check.gotogrounded();
     await test.step("Click on response audit", async () => {
@@ -89,23 +76,4 @@ test("check session", async ({ }, testInfo) => {
         expect(grScore).not.toBeNull();
         console.log(grScore);
     })
-
-    await test.step('Attach Evidence to Report', async () => {
-        // Take a final screenshot and attach it
-        const screenshot = await page.screenshot();
-        await testInfo.attach('Final Evidence Screenshot', { body: screenshot, contentType: 'image/png' });
-
-        // Stop tracing and attach it
-        const tracePath = `test-results/trace-${testInfo.title.replace(/\s+/g, '-')}.zip`;
-        await browserContext.tracing.stop({ path: tracePath });
-        await testInfo.attach('Playwright Trace', { path: tracePath, contentType: 'application/zip' });
-    });
-
-    // Close context so the video finishes saving, then attach the video
-    const video = page.video();
-    await browserContext.close();
-    if (video) {
-        const videoPath = await video.path();
-        await testInfo.attach('Session Video', { path: videoPath, contentType: 'video/webm' });
-    }
 })
