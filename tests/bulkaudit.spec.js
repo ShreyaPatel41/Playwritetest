@@ -25,6 +25,8 @@ test("check session", async ({ }, testInfo) => {
 
     const tryGroundedSessioncheck = new TryGroundedSessioncheck(page);
     await tryGroundedSessioncheck.gotogrounded();
+
+
     await test.step("Click on Bulk audit", async () => {
         // Wait for the dashboard to finish loading before clicking
         await page.waitForLoadState('networkidle');

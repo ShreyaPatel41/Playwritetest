@@ -2,7 +2,7 @@ const { test, expect, chromium } = require('@playwright/test');
 const { TryGroundedSessioncheck } = require('../pageObjects/TryGroundedSessioncheck');
 const { Responseaudit } = require('../pageObjects/Responseaudit');
 
-test.only("check session", async ({ }, testInfo) => {
+test("check session", async ({ }, testInfo) => {
     test.setTimeout(120000);
 
     const browserContext = await chromium.launchPersistentContext('C:/automation-profile', {
