@@ -9,10 +9,10 @@ test.describe('Try Grounded Tests with Persistent Profile', () => {
         // We use the EXACT same profile we created earlier.
         // This means if you are logged into Gmail on this profile, 
         // you will automatically be logged in when clicking "Sign in with Google"!
-        const userDataDir = 'C:/automation-profile';
+        const userDataDir = './automation-profile';
 
         browserContext = await chromium.launchPersistentContext(userDataDir, {
-            headless: false,
+            headless: process.env.CI ? true : false,
             channel: 'chrome'
         });
 
@@ -42,13 +42,13 @@ test.describe('Try Grounded Tests with Persistent Profile', () => {
         // await page.pause();
     });
 
-    test.only("try to signin using gmail", async () => {
+    test("try to signin using gmail", async () => {
         const groundedPage = new TryGroundedlogin(page);
-        
+
         // Simply call the global login function from the Page Object!
         // It handles both logging in the first time, or skipping if already logged in.
         await groundedPage.globalLogin('samarth.patel@project-kiwiqa.com');
-        
-        await page.pause(); 
+
+        // await page.pause();
     });
 });

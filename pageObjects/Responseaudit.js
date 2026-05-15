@@ -15,36 +15,36 @@ class Responseaudit {
         this.grScore = page.locator('xpath=/html/body/div[1]/div/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]')
     }
     async clickResponseAudit() {
-        await this.responseAuditLink.waitFor("visible");
+        await this.responseAuditLink.waitFor({ state: "visible" });
         await this.responseAuditLink.click();
     }
     async clickonhubspot() {
-        await this.hubspot.waitFor("visible");
+        await this.hubspot.waitFor({ state: "visible" });
         await this.hubspot.click();
     }
     async clickondeal() {
-        await this.deal.waitFor("visible");
+        await this.deal.waitFor({ state: "visible" });
         await this.deal.click();
     }
     async getdealcount() {
         // Wait for the *first* deal to become visible to avoid strict mode error
-        await this.totaldealcount.first().waitFor("visible");
+        await this.totaldealcount.first().waitFor({ state: "visible" });
 
         // Count all the matched deal elements
         const totalData = await this.totaldealcount.count();
         return totalData;
     }
     async clickonfactual() {
-        await this.factual.waitFor("visible");
+        await this.factual.waitFor({ state: "visible" });
         await this.factual.click();
-        await this.textare.waitFor("visible");
+        await this.textare.waitFor({ state: "visible" });
         const data = await this.textare.textContent();
         return data;
     }
     async aicontent_demo() {
-        await this.generatedemo.waitFor("visible");
+        await this.generatedemo.waitFor({ state: "visible" });
         await this.generatedemo.click();
-        await this.getresponse.waitFor("visible");
+        await this.getresponse.waitFor({ state: "visible" });
         await this.getresponse.click();
 
         // Wait for the AI response box to appear
@@ -57,7 +57,7 @@ class Responseaudit {
         return data;
     }
     async Runaudit() {
-        await this.run.waitFor("visible");
+        await this.run.waitFor({ state: "visible" });
         await this.run.click();
     }
     async checkreport() {
@@ -66,7 +66,7 @@ class Responseaudit {
         // It will wait up to 60 seconds, but if the button appears in 5 seconds, 
         // the test will instantly continue!
         await this.exportbutton.waitFor({ state: "visible", timeout: 60000 });
-        await this.grScore.waitFor("visible");
+        await this.grScore.waitFor({ state: "visible" });
         const grScore = await this.grScore.textContent();
         return grScore;
 
