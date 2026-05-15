@@ -6,7 +6,7 @@ const {
 const { bulkaudit } = require('../pageObjects/bulkaudit');
 const { TryGroundedSessioncheck } = require('../pageObjects/TryGroundedSessioncheck');
 
-test.only("check session", async ({ }, testInfo) => {
+test("check session", async ({ }, testInfo) => {
     let actualNumber;
     test.setTimeout(120000);
 
@@ -58,7 +58,7 @@ test.only("check session", async ({ }, testInfo) => {
                 });
             console.log(`The Total question is ${number}`);
             console.log('All test running completed');
-            await page.pause();
+            // await page.pause(); // Disabled for CI/CD
         })
 
     })
