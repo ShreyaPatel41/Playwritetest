@@ -11,7 +11,7 @@ test.only("check session", async ({ }, testInfo) => {
     test.setTimeout(120000);
 
     const browserContext = await chromium.launchPersistentContext('./automation-profile', {
-        headless: false,
+        headless: process.env.CI ? true : false,
         channel: 'chrome',
         recordVideo: {
             dir: 'test-results/videos/' // Automatically records video of the session
