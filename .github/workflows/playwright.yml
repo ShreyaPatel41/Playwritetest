@@ -10,7 +10,7 @@ on:
       test_file:
         description: 'Test file or folder to run (e.g. tests/Conversation.spec.js)'
         required: false
-        default: ''
+        default: 'tests/Conversation.spec.js'
         type: string
       grep_filter:
         description: 'Run tests matching this title/tag (e.g. @conversation)'
@@ -63,8 +63,8 @@ jobs:
           echo "Running tests matching title/tag: ${{ github.event.inputs.grep_filter }}"
           npx playwright test --grep "${{ github.event.inputs.grep_filter }}"
         else
-          echo "Running all tests..."
-          npx playwright test
+          echo "Running default test suite (tests/Conversation.spec.js)..."
+          npx playwright test tests/Conversation.spec.js
         fi
       env:
         CI: true
@@ -76,3 +76,37 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+
+    - name: Zip Playwright HTML Report
+      if: always()
+      run: |
+        zip -r playwright-report.zip playwright-report/
+      shell: bash
+
+    - name: Send Email with Test Report
+      uses: dawidd6/action-send-mail@v3
+      if: always()
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+        username: ${{ secrets.MAIL_USERNAME }}
+        password: ${{ secrets.MAIL_PASSWORD }}
+        subject: "Playwright Automation Test Run: ${{ job.status }}"
+        to: samarth.patel@project-kiwiqa.com
+        from: "Playwright Reporter <${{ secrets.MAIL_USERNAME }}>"
+        body: |
+          Hello Samarth,
+
+          The Playwright automation suite execution has finished.
+
+          * **Workflow Run Status**: ${{ job.status }}
+          * **Triggered By**: ${{ github.actor }}
+          * **Branch**: ${{ github.ref_name }}
+          * **Commit Message**: ${{ github.event.head_commit.message }}
+          * **GitHub Run Link**: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          I have compiled the full HTML test report and attached it to this email as a zipped archive (playwright-report.zip). Please download and extract it locally, then open 'index.html' to review all interactive traces, logs, videos, and screenshots.
+
+          Best regards,
+          Playwright Automation Bot
+        attachments: playwright-report.zip
