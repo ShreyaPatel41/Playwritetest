@@ -6,6 +6,17 @@ on:
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
+    inputs:
+      test_file:
+        description: 'Test file or folder to run (e.g. tests/Conversation.spec.js)'
+        required: false
+        default: ''
+        type: string
+      grep_filter:
+        description: 'Run tests matching this title/tag (e.g. @conversation)'
+        required: false
+        default: ''
+        type: string
 
 jobs:
   test:
@@ -44,7 +55,17 @@ jobs:
       shell: bash
 
     - name: Run Playwright tests
-      run: npx playwright test
+      run: |
+        if [ -n "${{ github.event.inputs.test_file }}" ]; then
+          echo "Running specific test file/folder: ${{ github.event.inputs.test_file }}"
+          npx playwright test ${{ github.event.inputs.test_file }}
+        elif [ -n "${{ github.event.inputs.grep_filter }}" ]; then
+          echo "Running tests matching title/tag: ${{ github.event.inputs.grep_filter }}"
+          npx playwright test --grep "${{ github.event.inputs.grep_filter }}"
+        else
+          echo "Running all tests..."
+          npx playwright test
+        fi
       env:
         CI: true
 
