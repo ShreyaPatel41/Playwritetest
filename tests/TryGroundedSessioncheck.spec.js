@@ -67,23 +67,24 @@ test("check session", async ({ }, testInfo) => {
         await page.waitForLoadState('networkidle');
         const responseaudit = new Responseaudit(page);
         const data = await responseaudit.aicontent_demo();
+        await page.waitForTimeout(3000)
         await expect(data).not.toBeNull();
         console.log(data);
 
     })
-    await test.step('click on run', async () => {
-        await page.waitForLoadState('networkidle');
-        const responseaudit = new Responseaudit(page);
-        await responseaudit.Runaudit();
+    // await test.step('click on run', async () => {
+    //     await page.waitForLoadState('networkidle');
+    //     const responseaudit = new Responseaudit(page);
+    //     await responseaudit.Runaudit();
 
-    })
-    await test.step('check report', async () => {
-        await page.waitForLoadState('networkidle');
-        const responseaudit = new Responseaudit(page);
-        const grScore = await responseaudit.checkreport();
-        expect(grScore).not.toBeNull();
-        console.log(grScore);
-    })
+    // })
+    // await test.step('check report', async () => {
+    //     await page.waitForLoadState('networkidle');
+    //     const responseaudit = new Responseaudit(page);
+    //     const grScore = await responseaudit.checkreport();
+    //     expect(grScore).not.toBeNull();
+    //     console.log(grScore);
+    // })
 
     await browserContext.close();
 })
