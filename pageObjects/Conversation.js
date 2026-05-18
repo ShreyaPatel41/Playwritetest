@@ -15,8 +15,8 @@ class Conversation {
         this.transcripttextarea = page.locator('textarea[placeholder*="Q:"]');
     }
     async clickConversation() {
-        await this.Conversation.waitFor({ state: 'visible' });
-        await this.Conversation.click();
+        await this.conversation.waitFor({ state: 'visible' });
+        await this.conversation.click();
         await this.pageTitle.waitFor({ state: 'visible' });
         const title = await this.pageTitle.textContent();
         return title;
