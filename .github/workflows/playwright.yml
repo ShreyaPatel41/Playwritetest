@@ -8,9 +8,9 @@ on:
   workflow_dispatch:
     inputs:
       test_file:
-        description: 'Test file or folder to run (e.g. tests/Conversation.spec.js)'
+        description: 'Test file or folder to run (leave empty to run all tests)'
         required: false
-        default: 'tests/Conversation.spec.js'
+        default: ''
         type: string
       grep_filter:
         description: 'Run tests matching this title/tag (e.g. @conversation)'
@@ -67,8 +67,8 @@ jobs:
           echo "Running tests matching title/tag: ${{ github.event.inputs.grep_filter }}"
           npx playwright test --grep "${{ github.event.inputs.grep_filter }}"
         else
-          echo "Running default test suite (tests/Conversation.spec.js)..."
-          npx playwright test tests/Conversation.spec.js
+          echo "Running all tests..."
+          npx playwright test
         fi
       env:
         CI: true
