@@ -77,31 +77,61 @@ jobs:
         path: playwright-report/
         retention-days: 30
 
-    - name: Zip Playwright HTML Report
+    - name: Generate Allure Report
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      id: allure-report
+      with:
+        allure_results: allure-results
+        allure_report: allure-report
+        allure_history: allure-history
+        keep_reports: 20
+
+    - name: Upload Allure Report Artifact
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: allure-report
+        path: allure-report/
+        retention-days: 30
+
+    - name: Zip Test Reports
       if: always()
       run: |
         zip -r playwright-report.zip playwright-report/
+        zip -r allure-report.zip allure-report/
       shell: bash
 
-    - name: Upload Report to Free Cloud Sharing
+    - name: Upload Reports to Free Cloud Sharing
       if: always()
       run: |
-        echo "Uploading to file.io..."
-        RESPONSE=$(curl -s -F "file=@playwright-report.zip" https://file.io || echo "failed")
-        DOWNLOAD_URL=$(echo $RESPONSE | jq -r '.link' 2>/dev/null || echo "")
+        echo "Uploading Playwright HTML Report to file.io..."
+        RESPONSE_PW=$(curl -s -F "file=@playwright-report.zip" https://file.io || echo "failed")
+        DOWNLOAD_URL_PW=$(echo $RESPONSE_PW | jq -r '.link' 2>/dev/null || echo "")
         
-        if [ "$DOWNLOAD_URL" = "null" ] || [ -z "$DOWNLOAD_URL" ] || [ "$RESPONSE" = "failed" ]; then
+        if [ "$DOWNLOAD_URL_PW" = "null" ] || [ -z "$DOWNLOAD_URL_PW" ] || [ "$RESPONSE_PW" = "failed" ]; then
           echo "file.io upload failed, attempting transfer.sh..."
-          DOWNLOAD_URL=$(curl -s --upload-file ./playwright-report.zip https://transfer.sh/playwright-report.zip || echo "")
+          DOWNLOAD_URL_PW=$(curl -s --upload-file ./playwright-report.zip https://transfer.sh/playwright-report.zip || echo "")
         fi
         
-        if [ -z "$DOWNLOAD_URL" ]; then
-          echo "All uploads failed, falling back to GitHub Actions UI link"
-          DOWNLOAD_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        echo "Uploading Allure Report to file.io..."
+        RESPONSE_AL=$(curl -s -F "file=@allure-report.zip" https://file.io || echo "failed")
+        DOWNLOAD_URL_AL=$(echo $RESPONSE_AL | jq -r '.link' 2>/dev/null || echo "")
+        
+        if [ "$DOWNLOAD_URL_AL" = "null" ] || [ -z "$DOWNLOAD_URL_AL" ] || [ "$RESPONSE_AL" = "failed" ]; then
+          echo "file.io upload failed, attempting transfer.sh..."
+          DOWNLOAD_URL_AL=$(curl -s --upload-file ./allure-report.zip https://transfer.sh/allure-report.zip || echo "")
         fi
         
-        echo "DOWNLOAD_URL=$DOWNLOAD_URL" >> $GITHUB_ENV
-        echo "Final Download URL: $DOWNLOAD_URL"
+        if [ -z "$DOWNLOAD_URL_PW" ]; then
+          DOWNLOAD_URL_PW="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        fi
+        if [ -z "$DOWNLOAD_URL_AL" ]; then
+          DOWNLOAD_URL_AL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        fi
+        
+        echo "DOWNLOAD_URL_PW=$DOWNLOAD_URL_PW" >> $GITHUB_ENV
+        echo "DOWNLOAD_URL_AL=$DOWNLOAD_URL_AL" >> $GITHUB_ENV
       shell: bash
 
     - name: Send Email with Test Report
@@ -126,13 +156,14 @@ jobs:
           * **Commit Message**: ${{ github.event.head_commit.message }}
           * **GitHub Actions Run Link**: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-          📥 **Direct Download Playwright HTML Report (No Login Required)**:
-          ${{ env.DOWNLOAD_URL }}
+          📥 **Direct Download Links (No Login Required)**:
+          * **Playwright Standard HTML Report**: ${{ env.DOWNLOAD_URL_PW }}
+          * **Allure Premium Dashboard Report**: ${{ env.DOWNLOAD_URL_AL }}
 
-          To view the detailed interactive HTML test report locally:
-          1. Click the Direct Download link above to download the zip file.
+          To view the Allure Premium Report locally:
+          1. Download the Allure report zip file from the link above.
           2. Extract it locally.
-          3. Open 'index.html' in your browser to review all interactive traces, logs, videos, and screenshots!
+          3. Open 'index.html' in your browser to view the premium dashboard containing advanced statistics, charts, and categorization!
 
           Best regards,
           Playwright Automation Bot
