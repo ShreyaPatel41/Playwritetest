@@ -5,7 +5,7 @@ test("check conversation module page Working or not", async ({ groundedPage, con
     const { page, browserContext } = groundedPage;
 
     await test.step("check Conversation module page", async () => {
-        await page.waitForLoadState('networkidle');
+
         await conversation.clickConversation();
         await expect(conversation.pageTitle).toContainText("Conversation Analysis");
     });
@@ -16,7 +16,7 @@ test("Check all conversation sub  modules Working or not", async ({ groundedPage
     await conversation.clickConversation();
 
     await test.step("check all conversation sub modules", async () => {
-        await page.waitForLoadState('networkidle');
+
         await conversation.checkModule();
 
     });
