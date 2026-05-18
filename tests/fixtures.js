@@ -44,9 +44,6 @@ const test = base.test.extend({
             });
         }
 
-        // Start tracing before the test runs to capture screenshots, snapshots, and sources
-        await browserContext.tracing.start({ screenshots: true, snapshots: true, sources: true });
-
         // Get the active page or create a new one
         const page = browserContext.pages().length > 0 ? browserContext.pages()[0] : await browserContext.newPage();
         
@@ -63,28 +60,26 @@ const test = base.test.extend({
         // Pass the context and page to the test
         await use({ page, browserContext });
 
-        // Capture a full-page screenshot if the test fails
-        if (testInfo.status !== testInfo.expectedStatus) {
-            const screenshotPath = path.join(testInfo.outputDir, 'failure-screenshot.png');
-            await page.screenshot({ path: screenshotPath, fullPage: true });
-            await testInfo.attach('failure-screenshot', {
-                path: screenshotPath,
-                contentType: 'image/png'
-            });
-        }
-
-        // Stop tracing and attach trace.zip to the report
-        const tracePath = path.join(testInfo.outputDir, 'trace.zip');
-        await browserContext.tracing.stop({ path: tracePath });
-        await testInfo.attach('trace', {
-            path: tracePath,
-            contentType: 'application/zip'
-        });
-
-        // Auto-close context and browser after test completion
+        // Auto-close context and browser after test completion to finalize the video recording on disk
         await browserContext.close();
         if (browserContext._browser) {
             await browserContext._browser.close();
+        }
+
+        // Retrieve the finished video file and attach it as evidence to the test report
+        try {
+            const video = page.video();
+            if (video) {
+                const videoPath = await video.path();
+                if (videoPath && fs.existsSync(videoPath)) {
+                    await testInfo.attach('video', {
+                        path: videoPath,
+                        contentType: 'video/webm'
+                    });
+                }
+            }
+        } catch (err) {
+            console.log("Could not attach video to report:", err.message);
         }
     },
 
