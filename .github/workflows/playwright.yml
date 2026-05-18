@@ -77,6 +77,20 @@ jobs:
         path: playwright-report/
         retention-days: 30
 
+    - name: Zip Playwright HTML Report
+      if: always()
+      run: |
+        zip -r playwright-report.zip playwright-report/
+      shell: bash
+
+    - name: Upload Report to Transfer.sh
+      if: always()
+      run: |
+        DOWNLOAD_URL=$(curl -s --upload-file ./playwright-report.zip https://transfer.sh/playwright-report.zip)
+        echo "DOWNLOAD_URL=$DOWNLOAD_URL" >> $GITHUB_ENV
+        echo "Successfully uploaded report to $DOWNLOAD_URL"
+      shell: bash
+
     - name: Send Email with Test Report
       uses: dawidd6/action-send-mail@v3
       if: always()
@@ -99,11 +113,13 @@ jobs:
           * **Commit Message**: ${{ github.event.head_commit.message }}
           * **GitHub Actions Run Link**: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-          To view the detailed interactive HTML test report (which includes screenshots, videos, and full trace steps):
-          1. Open the GitHub Actions Run Link above.
-          2. Scroll to the 'Artifacts' section at the bottom of the page.
-          3. Click 'playwright-report' to download the zipped archive.
-          4. Extract it locally and open 'index.html' in your browser!
+          📥 **Direct Download Playwright HTML Report (No Login Required)**:
+          ${{ env.DOWNLOAD_URL }}
+
+          To view the detailed interactive HTML test report locally:
+          1. Click the Direct Download link above to download the zip file.
+          2. Extract it locally.
+          3. Open 'index.html' in your browser to review all interactive traces, logs, videos, and screenshots!
 
           Best regards,
           Playwright Automation Bot
