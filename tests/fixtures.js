@@ -10,7 +10,7 @@ const fs = require('fs');
 // Extend base test to include pre-configured groundedPage and Page Objects
 const test = base.test.extend({
     // Fixture to automatically boot persistent context or standard context using storage state
-    groundedPage: async ({}, use) => {
+    groundedPage: async ({}, use, testInfo) => {
         let browserContext;
         let isCI = !!process.env.CI;
 
@@ -25,7 +25,10 @@ const test = base.test.extend({
             
             // Create a fresh context loaded with the saved authentication state
             browserContext = await browser.newContext({
-                storageState: fs.existsSync(authPath) ? authPath : undefined
+                storageState: fs.existsSync(authPath) ? authPath : undefined,
+                recordVideo: {
+                    dir: path.join(testInfo.outputDir, 'videos')
+                }
             });
             
             // Keep reference to browser so we can close it in teardown
@@ -34,9 +37,15 @@ const test = base.test.extend({
             // Locally: Launch persistent Chrome browser context
             browserContext = await base.chromium.launchPersistentContext('C:/automation-profile', {
                 headless: false,
-                channel: 'chrome'
+                channel: 'chrome',
+                recordVideo: {
+                    dir: path.join(testInfo.outputDir, 'videos')
+                }
             });
         }
+
+        // Start tracing before the test runs to capture screenshots, snapshots, and sources
+        await browserContext.tracing.start({ screenshots: true, snapshots: true, sources: true });
 
         // Get the active page or create a new one
         const page = browserContext.pages().length > 0 ? browserContext.pages()[0] : await browserContext.newPage();
@@ -53,6 +62,24 @@ const test = base.test.extend({
 
         // Pass the context and page to the test
         await use({ page, browserContext });
+
+        // Capture a full-page screenshot if the test fails
+        if (testInfo.status !== testInfo.expectedStatus) {
+            const screenshotPath = path.join(testInfo.outputDir, 'failure-screenshot.png');
+            await page.screenshot({ path: screenshotPath, fullPage: true });
+            await testInfo.attach('failure-screenshot', {
+                path: screenshotPath,
+                contentType: 'image/png'
+            });
+        }
+
+        // Stop tracing and attach trace.zip to the report
+        const tracePath = path.join(testInfo.outputDir, 'trace.zip');
+        await browserContext.tracing.stop({ path: tracePath });
+        await testInfo.attach('trace', {
+            path: tracePath,
+            contentType: 'application/zip'
+        });
 
         // Auto-close context and browser after test completion
         await browserContext.close();
