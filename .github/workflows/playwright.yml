@@ -22,6 +22,10 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     
     steps:
     - name: Checkout Repository
@@ -95,6 +99,14 @@ jobs:
         path: allure-report/
         retention-days: 30
 
+    - name: Deploy Allure Report to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: always()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./allure-report
+        publish_branch: gh-pages
+
     - name: Zip Test Reports
       if: always()
       run: |
@@ -156,14 +168,12 @@ jobs:
           * **Commit Message**: ${{ github.event.head_commit.message }}
           * **GitHub Actions Run Link**: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-          📥 **Direct Download Links (No Login Required)**:
+          🌐 **Live Test Report in Your Browser (No Download / No Login Required)**:
+          👉 https://ShreyaPatel41.github.io/Playwritetest/
+
+          📥 **Offline Download Archives (As Backups)**:
           * **Playwright Standard HTML Report**: ${{ env.DOWNLOAD_URL_PW }}
           * **Allure Premium Dashboard Report**: ${{ env.DOWNLOAD_URL_AL }}
-
-          To view the Allure Premium Report locally:
-          1. Download the Allure report zip file from the link above.
-          2. Extract it locally.
-          3. Open 'index.html' in your browser to view the premium dashboard containing advanced statistics, charts, and categorization!
 
           Best regards,
           Playwright Automation Bot
