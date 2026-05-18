@@ -1,7 +1,7 @@
 const { test, expect } = require('./fixtures');
 test.describe.configure({ mode: 'serial' });
 test("check conversation module page Working or not", async ({ groundedPage, conversation }) => {
-    test.setTimeout(120000);
+    test.setTimeout(60000);
     const { page, browserContext } = groundedPage;
 
     await test.step("check Conversation module page", async () => {
@@ -11,7 +11,7 @@ test("check conversation module page Working or not", async ({ groundedPage, con
     });
 });
 test("Check all conversation sub  modules Working or not", async ({ groundedPage, conversation }) => {
-    test.setTimeout(120000);
+    test.setTimeout(60000);
     const { page, browserContext } = groundedPage;
     await conversation.clickConversation();
 
@@ -20,6 +20,5 @@ test("Check all conversation sub  modules Working or not", async ({ groundedPage
         await conversation.checkModule();
 
     });
-    await browserContext.close();
 })
 

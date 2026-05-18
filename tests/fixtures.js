@@ -44,6 +44,12 @@ const test = base.test.extend({
         // Go to grounded dashboard to ensure we are logged in
         const check = new TryGroundedSessioncheck(page);
         await check.gotogrounded();
+        
+        console.log("--------------------------------------------------");
+        console.log(">>> DEBUG INFO FOR AUTHENTICATION <<<");
+        console.log("Current page URL:", page.url());
+        console.log("Current page title:", await page.title());
+        console.log("--------------------------------------------------");
 
         // Pass the context and page to the test
         await use({ page, browserContext });

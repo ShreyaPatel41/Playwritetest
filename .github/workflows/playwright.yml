@@ -44,11 +44,11 @@ jobs:
         PLAYWRIGHT_STORAGE_STATE: ${{ secrets.PLAYWRIGHT_STORAGE_STATE }}
       run: |
         mkdir -p .auth
-        if [ -n "$PLAYWRIGHT_STORAGE_STATE" ]; then
+        if [ -f ".auth/user.json" ]; then
+          echo "Using committed .auth/user.json state file..."
+        elif [ -n "$PLAYWRIGHT_STORAGE_STATE" ]; then
           echo "Populating auth state from GitHub secrets..."
           echo "$PLAYWRIGHT_STORAGE_STATE" > .auth/user.json
-        elif [ -f ".auth/user.json" ]; then
-          echo "Using committed .auth/user.json state file..."
         else
           echo "WARNING: No .auth/user.json file found in repository or secrets! Tests requiring login may fail."
         fi
