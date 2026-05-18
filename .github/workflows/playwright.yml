@@ -83,12 +83,25 @@ jobs:
         zip -r playwright-report.zip playwright-report/
       shell: bash
 
-    - name: Upload Report to Transfer.sh
+    - name: Upload Report to Free Cloud Sharing
       if: always()
       run: |
-        DOWNLOAD_URL=$(curl -s --upload-file ./playwright-report.zip https://transfer.sh/playwright-report.zip)
+        echo "Uploading to file.io..."
+        RESPONSE=$(curl -s -F "file=@playwright-report.zip" https://file.io || echo "failed")
+        DOWNLOAD_URL=$(echo $RESPONSE | jq -r '.link' 2>/dev/null || echo "")
+        
+        if [ "$DOWNLOAD_URL" = "null" ] || [ -z "$DOWNLOAD_URL" ] || [ "$RESPONSE" = "failed" ]; then
+          echo "file.io upload failed, attempting transfer.sh..."
+          DOWNLOAD_URL=$(curl -s --upload-file ./playwright-report.zip https://transfer.sh/playwright-report.zip || echo "")
+        fi
+        
+        if [ -z "$DOWNLOAD_URL" ]; then
+          echo "All uploads failed, falling back to GitHub Actions UI link"
+          DOWNLOAD_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        fi
+        
         echo "DOWNLOAD_URL=$DOWNLOAD_URL" >> $GITHUB_ENV
-        echo "Successfully uploaded report to $DOWNLOAD_URL"
+        echo "Final Download URL: $DOWNLOAD_URL"
       shell: bash
 
     - name: Send Email with Test Report
