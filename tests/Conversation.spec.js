@@ -20,5 +20,12 @@ test("Check all conversation sub  modules Working or not", async ({ groundedPage
         await conversation.checkModule();
 
     });
+});
+test("Check All component wrok on transcriptmodule", async ({ groundedPage, conversation }) => {
+    const { page, browserContext } = groundedPage;
+    await conversation.clickConversation();
+    await test.step("check transcript module page", async () => {
+        await conversation.transcriptmodulecheck();
+    })
 })
 
