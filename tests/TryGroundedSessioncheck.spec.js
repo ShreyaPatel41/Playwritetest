@@ -15,7 +15,7 @@ test("check session", async ({ }, testInfo) => {
     await check.gotogrounded();
 
     const responseaudit = new Responseaudit(page);
-    await responseaudit.closePopup();
+    // await responseaudit.closePopup();
     await test.step("Click on response audit", async () => {
         // Wait for the dashboard to finish loading before clicking
         await page.waitForLoadState('networkidle');
