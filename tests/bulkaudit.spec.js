@@ -5,13 +5,23 @@ const {
 } = require('@playwright/test');
 const { bulkaudit } = require('../pageObjects/bulkaudit');
 const { TryGroundedSessioncheck } = require('../pageObjects/TryGroundedSessioncheck');
+const { Responseaudit } = require('../pageObjects/Responseaudit');
 
-test("check session", async ({ page }) => {
+test("check session", async ({ }, testInfo) => {
     let actualNumber;
     test.setTimeout(120000);
 
+    const browserContext = await chromium.launchPersistentContext('c:/automation-profile', {
+        headless: process.env.CI ? true : false,
+        channel: 'chrome'
+    });
+
+    const page = browserContext.pages().length > 0 ? browserContext.pages()[0] : await browserContext.newPage();
+
     const tryGroundedSessioncheck = new TryGroundedSessioncheck(page);
     await tryGroundedSessioncheck.gotogrounded();
+    const responseaudit = new Responseaudit(page);
+    await responseaudit.closePopup();
     await test.step("Click on Bulk audit", async () => {
         // Wait for the dashboard to finish loading before clicking
         await page.waitForLoadState('networkidle');
@@ -48,4 +58,6 @@ test("check session", async ({ page }) => {
 
         })
     })
+
+    await browserContext.close();
 })

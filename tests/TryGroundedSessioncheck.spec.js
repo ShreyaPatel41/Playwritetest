@@ -2,15 +2,23 @@ const { test, expect, chromium } = require('@playwright/test');
 const { TryGroundedSessioncheck } = require('../pageObjects/TryGroundedSessioncheck');
 const { Responseaudit } = require('../pageObjects/Responseaudit');
 
-test("check session", async ({ page }) => {
+test("check session", async ({ }, testInfo) => {
     test.setTimeout(120000);
+
+    const browserContext = await chromium.launchPersistentContext('C:/automation-profile', {
+        headless: process.env.CI ? true : false,
+        channel: 'chrome'
+    });
+
+    const page = browserContext.pages().length > 0 ? browserContext.pages()[0] : await browserContext.newPage();
     const check = new TryGroundedSessioncheck(page);
     await check.gotogrounded();
+
+    const responseaudit = new Responseaudit(page);
+    await responseaudit.closePopup();
     await test.step("Click on response audit", async () => {
         // Wait for the dashboard to finish loading before clicking
         await page.waitForLoadState('networkidle');
-
-        const responseaudit = new Responseaudit(page);
         await responseaudit.clickResponseAudit();
 
     })
@@ -59,7 +67,7 @@ test("check session", async ({ page }) => {
         await page.waitForLoadState('networkidle');
         const responseaudit = new Responseaudit(page);
         const data = await responseaudit.aicontent_demo();
-        expect(data).not.toBeNull();
+        await expect(data).not.toBeNull();
         console.log(data);
 
     })
@@ -76,4 +84,6 @@ test("check session", async ({ page }) => {
         expect(grScore).not.toBeNull();
         console.log(grScore);
     })
+
+    await browserContext.close();
 })

@@ -35,14 +35,11 @@ export default defineConfig({
   },
 
   projects: [
-    { name: 'setup', testMatch: /.*\.setup\.js/ },
     {
       name: 'chromium',
-      use: { 
+      use: {
         ...devices['Desktop Chrome'],
-        storageState: '.auth/user.json',
       },
-      dependencies: ['setup'],
     }
 
     /* Test against mobile viewports. */

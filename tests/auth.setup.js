@@ -10,9 +10,13 @@ setup('authenticate', async ({}) => {
         channel: 'chrome'
     });
     
-    // 2. Extract the cookies/tokens and save them to user.json
+    // 2. Navigate to the page FIRST so Playwright can access the domain's LocalStorage!
+    const page = browserContext.pages().length > 0 ? browserContext.pages()[0] : await browserContext.newPage();
+    await page.goto('https://grounded-topaz.vercel.app/dashboard', { waitUntil: 'networkidle' });
+
+    // 3. Extract the cookies/tokens and save them to user.json
     await browserContext.storageState({ path: authFile });
     
-    // 3. Close the heavy profile browser
+    // 4. Close the heavy profile browser
     await browserContext.close();
 });

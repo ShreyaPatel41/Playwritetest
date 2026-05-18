@@ -1,0 +1,55 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Install Playwright Browsers (Chromium)
+      run: npx playwright install chromium --with-deps
+
+    - name: Populate Auth State (.auth/user.json)
+      run: |
+        mkdir -p .auth
+        if [ -n "${{ secrets.PLAYWRIGHT_STORAGE_STATE }}" ]; then
+          echo "Populating auth state from GitHub secrets..."
+          echo '${{ secrets.PLAYWRIGHT_STORAGE_STATE }}' > .auth/user.json
+        elif [ -f ".auth/user.json" ]; then
+          echo "Using committed .auth/user.json state file..."
+        else
+          echo "WARNING: No .auth/user.json file found in repository or secrets! Tests requiring login may fail."
+        fi
+      shell: bash
+
+    - name: Run Playwright tests
+      run: npx playwright test
+      env:
+        CI: true
+
+    - name: Upload Playwright HTML Report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30

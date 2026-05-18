@@ -13,6 +13,15 @@ class Responseaudit {
         this.run = page.locator('xpath=/html/body/div[1]/div/div[3]/div/div[2]/div[2]/div[2]/button')
         this.exportbutton = page.locator('xpath=/html/body/div[1]/div/div[1]/div[1]/div[2]/button[4]')
         this.grScore = page.locator('xpath=/html/body/div[1]/div/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]')
+        this.skip = page.locator('xpath=/html/body/div[2]/div/div[3]/div/div[1]/div[2]/div[2]/div[1]/button')
+    }
+    async closePopup() {
+        try {
+            await this.skip.waitFor({ state: "visible", timeout: 5000 });
+            await this.skip.click();
+        } catch (error) {
+            console.log("Popup did not appear within 5 seconds, continuing.");
+        }
     }
     async clickResponseAudit() {
         await this.responseAuditLink.waitFor({ state: "visible" });
@@ -51,7 +60,7 @@ class Responseaudit {
         await this.airesponsebox.waitFor({ state: "visible" });
 
         // Wait a few seconds for the AI to finish typing the response
-        await this.page.waitForTimeout(5000);
+        await this.page.waitForTimeout(20000);
 
         const data = await this.airesponsebox.textContent();
         return data;

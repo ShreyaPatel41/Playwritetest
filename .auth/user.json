@@ -595,7 +595,7 @@
       "value": "dvb_3DhxySlXv6BFghDmg0TLYV2ABAi",
       "domain": "grounded-topaz.vercel.app",
       "path": "/",
-      "expires": 1810373901,
+      "expires": 1810378420,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
@@ -605,20 +605,10 @@
       "value": "dvb_3DhxySlXv6BFghDmg0TLYV2ABAi",
       "domain": "grounded-topaz.vercel.app",
       "path": "/",
-      "expires": 1810373901,
+      "expires": 1810378420,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
-    },
-    {
-      "name": "__client_uat",
-      "value": "1778749329",
-      "domain": ".grounded-topaz.vercel.app",
-      "path": "/",
-      "expires": 1810373926,
-      "httpOnly": false,
-      "secure": true,
-      "sameSite": "Strict"
     },
     {
       "name": "__refresh_ai1cO-iC",
@@ -631,71 +621,11 @@
       "sameSite": "None"
     },
     {
-      "name": "__client_uat_ai1cO-iC",
-      "value": "1778749329",
-      "domain": ".grounded-topaz.vercel.app",
-      "path": "/",
-      "expires": 1810373926,
-      "httpOnly": false,
-      "secure": true,
-      "sameSite": "Strict"
-    },
-    {
       "name": "NID",
       "value": "531=OTNMYENg3Pf15eDqKMmIzXrDBfRkzPuitTo4NMEJOkA_AdD6qPFjv-VUrPV7EvdgJGv5Y9887fc2kaNPvXAsWcr3r52bsSd5TkXYjPW9hSXh4qcLtkHoKQzrbsqUlPnriF3Y0dlhXHfPiXDPcgWUfFeSefZ3KY2SEKDXLLlvHrxi37RMsxbOHOOqAjIWt0iGF4xjZ3JRhBwEV2P-kcXz4MF1ZuOmzYXH5q5kw0ZN9QSfUWKdBVWqf3mu9dU9y1lxC0LSUJU",
       "domain": ".google.com",
       "path": "/",
       "expires": 1794646744.85184,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "None"
-    },
-    {
-      "name": "__cf_bm",
-      "value": "m_V.w6HnjJ4MXqWgsDzcRupZ20xFsZKGbUTynZo0AE0-1778836716.5058405-1.0.1.1-1dOgO1u0vxzsMCAfcU3uF.QalDERDQCrnQK_xq2F2eP8kx.0_MvNMkrhZilc2o7ofuSlr7mFsYE_HwY8V_Z16nw6TopV1aA.Py.g3v.CHmvkJ17GHjSTaWN4I52eBqsN",
-      "domain": ".img.clerk.com",
-      "path": "/",
-      "expires": 1778838516.148383,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "None"
-    },
-    {
-      "name": "SIDCC",
-      "value": "AKEyXzVm7wdRQRK7voo5yemAgCtn2TS4619Is5WOmXzDDUIslQ-YVA_g8LoiPR1yiVd3c3vfXw",
-      "domain": ".google.com",
-      "path": "/",
-      "expires": 1810373898.605651,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "__Secure-1PSIDCC",
-      "value": "AKEyXzXuYm_WblupT2hv7gNpkncJ4vDmm_8cFKd2j1BuxdeU0u4gDxmZfXpIlunlKTeNgWd7zA",
-      "domain": ".google.com",
-      "path": "/",
-      "expires": 1810373898.605699,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "__Secure-3PSIDCC",
-      "value": "AKEyXzVgsI5LvTz__QFrfGTv13r90gw8eSBljD0lkBM1J2Ps1r8HW1KlXmQ0a4gJ4dWSlnAD-Q",
-      "domain": ".google.com",
-      "path": "/",
-      "expires": 1810373898.605747,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "None"
-    },
-    {
-      "name": "__cf_bm",
-      "value": "bMbz9U0qZlT0cNPiSUbKjSVR.vyKiidIBIuv3ldToYY-1778837902-1.0.1.1-XCq40c0qsMmNx0pdL4_n91mUaIW8tM3Fd8wKcAxwCaU6_9ChBV9U91DXzkHMt0ljgRlH9Ux9VNGelhaopg.QgsykXT7JoCDXGfvA23sYMG0",
-      "domain": ".main-raptor-0.clerk.accounts.dev",
-      "path": "/",
-      "expires": 1778839701.604142,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
@@ -711,15 +641,99 @@
       "sameSite": "Lax"
     },
     {
-      "name": "__session_ai1cO-iC",
-      "value": "eyJhbGciOiJSUzI1NiIsImNhdCI6ImNsX0I3ZDRQRDExMUFBQSIsImtpZCI6Imluc18zQXVmdjI5RWhoUHM2WDVRQVV3MFJSN0RydlEiLCJvaWF0IjoxNzc4ODM3OTAyLCJ0eXAiOiJKV1QifQ.eyJhenAiOiJodHRwczovL2dyb3VuZGVkLXRvcGF6LnZlcmNlbC5hcHAiLCJleHAiOjE3Nzg4Mzc5NjIsImZ2YSI6WzE0NzYsLTFdLCJpYXQiOjE3Nzg4Mzc5MDIsImlzcyI6Imh0dHBzOi8vbWFpbi1yYXB0b3ItMC5jbGVyay5hY2NvdW50cy5kZXYiLCJuYmYiOjE3Nzg4Mzc4OTIsInNpZCI6InNlc3NfM0RoendoRmYzNFlVZTZEdWtRcktwM2ptNHBsIiwic3RzIjoiYWN0aXZlIiwic3ViIjoidXNlcl8zQkE0RVBDTlRnczdXNjVGdlA5WlVEeW5VRXEiLCJ2IjoyfQ.LFqbzguWQr_zfzxAs7Z_4qLvtSpdLM7_8QIB0iZao0zo5-kYsGFbyEMklPKHHiN0D6y1j7djycOmD-GtKB6SI8OnuOKv_Niy4jp_a3PkV1yRcJvASf3vIb7c46nYtxfYOkEZxttVLF_Jh9FFYF4oXJTwcB-4XOdSjdNOBHNa7xNpLp1slezBCTujhD1S6oogowINwbHLD807Q2nb5-xihPpONt9gb9q6JdFm78p2viZ6w1UWc2S6zCWajOv2zk-RlpuS6Z0sO4akpAMsaSO8svpdkuGRwfp1IhjE9cvZXS5y3K83UoaEdZZNS-RdR-qirH688vjmUOjLa-_3HPwTtw",
-      "domain": "grounded-topaz.vercel.app",
+      "name": "SIDCC",
+      "value": "AKEyXzVdJdgy09AzhwVkKbGJJ1l3R6MsJlDkPrcN8DtczCbY4sTi_wZfQpjXMXrHdGGXOqW-BQ",
+      "domain": ".google.com",
       "path": "/",
-      "expires": 1810373926,
+      "expires": 1810378419.190589,
       "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__Secure-1PSIDCC",
+      "value": "AKEyXzWL1NMPkKJrIOmPjUiU07ZCW0DOnM8C4zu_UQQ9k_Ia6uoOkPNLBsYa8RSRrzCOsMUXtA",
+      "domain": ".google.com",
+      "path": "/",
+      "expires": 1810378419.190616,
+      "httpOnly": true,
       "secure": true,
       "sameSite": "Lax"
+    },
+    {
+      "name": "__Secure-3PSIDCC",
+      "value": "AKEyXzUpNEi3CJn8qtLvtJYuUhOI1w9vR2Ra2Q7I-LZk2Z-Y26EZCDow1tcl587YE6PaqV_y3w",
+      "domain": ".google.com",
+      "path": "/",
+      "expires": 1810378419.190652,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__clerk_redirect_count",
+      "value": "1",
+      "domain": "grounded-topaz.vercel.app",
+      "path": "/",
+      "expires": 1778842421.681294,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__cf_bm",
+      "value": "o.R6f2mOqfcp1LHDXqhL4yepYeD6L.AhJdJrsejO9kg-1778842419-1.0.1.1-7RITKD_HWVVmqEhL4SGzxQa.AWFCNr_VY56bAAa8D4XwayoMQ1YbQ0ar1VZ.Ci3FEfWJUMWI_q.o0xi3hGKyNbYt_q5jNZGWjAm.JoDPKFI",
+      "domain": ".main-raptor-0.clerk.accounts.dev",
+      "path": "/",
+      "expires": 1778844219.116941,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_cfuvid",
+      "value": "lUx4A0Lb9x1LqPsW_xus9JPSKg0_MZ1BHlUfBuHWPfw-1778842419928-0.0.1.1-604800000",
+      "domain": ".main-raptor-0.clerk.accounts.dev",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__client_uat",
+      "value": "0",
+      "domain": ".grounded-topaz.vercel.app",
+      "path": "/",
+      "expires": 1810378420,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "__client_uat_ai1cO-iC",
+      "value": "0",
+      "domain": ".grounded-topaz.vercel.app",
+      "path": "/",
+      "expires": 1810378420,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
     }
   ],
-  "origins": []
+  "origins": [
+    {
+      "origin": "https://grounded-topaz.vercel.app",
+      "localStorage": [
+        {
+          "name": "__clerk_environment",
+          "value": "{\"value\":{\"object\":\"environment\",\"auth_config\":{\"claimed_at\":null,\"id\":\"\",\"object\":\"auth_config\",\"reverification\":true,\"single_session_mode\":true},\"display_config\":{\"object\":\"display_config\",\"after_create_organization_url\":\"https://grounded-topaz.vercel.app\",\"after_join_waitlist_url\":\"https://grounded-topaz.vercel.app\",\"after_leave_organization_url\":\"https://grounded-topaz.vercel.app\",\"after_sign_in_url\":\"https://grounded-topaz.vercel.app\",\"after_sign_out_all_url\":\"https://grounded-topaz.vercel.app/\",\"after_sign_out_one_url\":\"https://main-raptor-0.accounts.dev/sign-in/choose\",\"after_sign_up_url\":\"https://grounded-topaz.vercel.app\",\"after_switch_session_url\":\"https://grounded-topaz.vercel.app\",\"application_name\":\"Grounded\",\"branded\":true,\"captcha_heartbeat\":false,\"captcha_oauth_bypass\":[],\"captcha_provider\":\"turnstile\",\"captcha_public_key_invisible\":\"0x4AAAAAAAFV93qQdS0ycilX\",\"captcha_public_key\":\"0x4AAAAAAAWXJGBD7bONzLBd\",\"captcha_widget_type\":\"smart\",\"clerk_js_version\":\"5\",\"create_organization_url\":\"https://main-raptor-0.accounts.dev/create-organization\",\"favicon_image_url\":\"\",\"home_url\":\"https://grounded-topaz.vercel.app\",\"id\":\"display_config_3Aufv1TeDbS2iqlvEPZeHsMKEK1\",\"instance_environment_type\":\"development\",\"logo_image_url\":\"\",\"organization_profile_url\":\"https://main-raptor-0.accounts.dev/organization\",\"preferred_sign_in_strategy\":\"password\",\"privacy_policy_url\":\"\",\"show_devmode_warning\":true,\"sign_in_url\":\"https://grounded-topaz.vercel.app/sign-in\",\"sign_up_url\":\"https://grounded-topaz.vercel.app/sign-up\",\"support_email\":\"\",\"terms_url\":\"\",\"theme\":{\"buttons\":{\"font_color\":\"#ffffff\",\"font_family\":\"\\\"Source Sans Pro\\\", sans-serif\",\"font_weight\":\"600\"},\"general\":{\"color\":\"#6c47ff\",\"padding\":\"1em\",\"box_shadow\":\"0 2px 8px rgba(0, 0, 0, 0.2)\",\"font_color\":\"#151515\",\"font_family\":\"\\\"Source Sans Pro\\\", sans-serif\",\"border_radius\":\"0.5em\",\"background_color\":\"#ffffff\",\"label_font_weight\":\"600\"},\"accounts\":{\"background_color\":\"#ffffff\"}},\"user_profile_url\":\"https://main-raptor-0.accounts.dev/user\",\"waitlist_url\":\"https://main-raptor-0.accounts.dev/waitlist\"},\"id\":\"\",\"maintenance_mode\":false,\"client_debug_mode\":false,\"partitioned_cookies\":false,\"organization_settings\":{\"actions\":{\"admin_delete\":true},\"domains\":{\"enabled\":false,\"enrollment_modes\":[],\"default_role\":\"\"},\"enabled\":false,\"max_allowed_memberships\":5},\"user_settings\":{\"actions\":{\"delete_self\":true,\"create_organization\":true,\"create_organizations_limit\":null},\"attributes\":{\"email_address\":{\"enabled\":true,\"required\":true,\"used_for_first_factor\":true,\"first_factors\":[\"email_code\",\"email_link\"],\"used_for_second_factor\":false,\"second_factors\":[],\"verifications\":[\"email_code\"],\"verify_at_sign_up\":true,\"immutable\":false,\"name\":\"email_address\"},\"phone_number\":{\"enabled\":false,\"required\":false,\"used_for_first_factor\":false,\"first_factors\":[],\"used_for_second_factor\":false,\"second_factors\":[],\"verifications\":[],\"verify_at_sign_up\":false,\"immutable\":false,\"name\":\"phone_number\"},\"username\":{\"enabled\":true,\"required\":false,\"used_for_first_factor\":true,\"first_factors\":[],\"used_for_second_factor\":false,\"second_factors\":[],\"verifications\":[],\"verify_at_sign_up\":false,\"immutable\":false,\"name\":\"username\"},\"web3_wallet\":{\"enabled\":false,\"required\":false,\"used_for_first_factor\":false,\"first_factors\":[],\"used_for_second_factor\":false,\"second_factors\":[],\"verifications\":[],\"verify_at_sign_up\":false,\"immutable\":false,\"name\":\"web3_wallet\"},\"first_name\":{\"enabled\":true,\"required\":false,\"used_for_first_factor\":false,\"first_factors\":[],\"used_for_second_factor\":false,\"second_factors\":[],\"verifications\":[],\"verify_at_sign_up\":false,\"immutable\":false,\"name\":\"first_name\"},\"last_name\":{\"enabled\":true,\"required\":false,\"used_for_first_factor\":false,\"first_factors\":[],\"used_for_second_factor\":false,\"second_factors\":[],\"verifications\":[],\"verify_at_sign_up\":false,\"immutable\":false,\"name\":\"last_name\"},\"password\":{\"enabled\":true,\"required\":true,\"used_for_first_factor\":false,\"first_factors\":[],\"used_for_second_factor\":false,\"second_factors\":[],\"verifications\":[],\"verify_at_sign_up\":false,\"immutable\":false,\"name\":\"password\"},\"authenticator_app\":{\"enabled\":false,\"required\":false,\"used_for_first_factor\":false,\"first_factors\":[],\"used_for_second_factor\":false,\"second_factors\":[],\"verifications\":[],\"verify_at_sign_up\":false,\"immutable\":false,\"name\":\"authenticator_app\"},\"ticket\":{\"enabled\":true,\"required\":false,\"used_for_first_factor\":false,\"first_factors\":[],\"used_for_second_factor\":false,\"second_factors\":[],\"verifications\":[],\"verify_at_sign_up\":false,\"immutable\":false,\"name\":\"ticket\"},\"backup_code\":{\"enabled\":false,\"required\":false,\"used_for_first_factor\":false,\"first_factors\":[],\"used_for_second_factor\":false,\"second_factors\":[],\"verifications\":[],\"verify_at_sign_up\":false,\"immutable\":false,\"name\":\"backup_code\"},\"passkey\":{\"enabled\":false,\"required\":false,\"used_for_first_factor\":false,\"first_factors\":[],\"used_for_second_factor\":false,\"second_factors\":[],\"verifications\":[],\"verify_at_sign_up\":false,\"immutable\":false,\"name\":\"passkey\"}},\"passkey_settings\":{\"allow_autofill\":true,\"show_sign_in_button\":true},\"password_settings\":{\"disable_hibp\":false,\"min_length\":8,\"max_length\":72,\"require_special_char\":false,\"require_numbers\":false,\"require_uppercase\":false,\"require_lowercase\":false,\"show_zxcvbn\":false,\"min_zxcvbn_strength\":0,\"enforce_hibp_on_sign_in\":true,\"allowed_special_characters\":\"!\\\"#$%&'()*+,-./:;<=>?@[]^_`{|}~\"},\"saml\":{\"enabled\":false},\"sign_in\":{\"second_factor\":{\"required\":false}},\"sign_up\":{\"captcha_enabled\":true,\"captcha_widget_type\":\"smart\",\"custom_action_required\":false,\"progressive\":true,\"mode\":\"public\",\"legal_consent_enabled\":false,\"mfa\":{\"required\":false}},\"social\":{\"oauth_apple\":{\"enabled\":true,\"required\":false,\"authenticatable\":true,\"block_email_subaddresses\":false,\"strategy\":\"oauth_apple\",\"not_selectable\":false,\"deprecated\":false,\"name\":\"Apple\",\"logo_url\":\"https://img.clerk.com/static/apple.png\"},\"oauth_google\":{\"enabled\":true,\"required\":false,\"authenticatable\":true,\"block_email_subaddresses\":true,\"strategy\":\"oauth_google\",\"not_selectable\":false,\"deprecated\":false,\"name\":\"Google\",\"logo_url\":\"https://img.clerk.com/static/google.png\"}}},\"commerce_settings\":{\"billing\":{\"stripe_publishable_key\":null,\"organization\":{\"enabled\":false,\"has_paid_plans\":false},\"user\":{\"enabled\":false,\"has_paid_plans\":false}}},\"api_keys_settings\":{\"user_api_keys_enabled\":true,\"orgs_api_keys_enabled\":false},\"protect_config\":{\"object\":\"protect_config\",\"id\":\"\"}},\"exp\":1778928820736}"
+        },
+        {
+          "name": "grounded_onboarded",
+          "value": "1"
+        }
+      ]
+    }
+  ]
 }
