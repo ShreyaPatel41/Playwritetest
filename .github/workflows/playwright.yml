@@ -29,11 +29,13 @@ jobs:
       run: npx playwright install chromium --with-deps
 
     - name: Populate Auth State (.auth/user.json)
+      env:
+        PLAYWRIGHT_STORAGE_STATE: ${{ secrets.PLAYWRIGHT_STORAGE_STATE }}
       run: |
         mkdir -p .auth
-        if [ -n "${{ secrets.PLAYWRIGHT_STORAGE_STATE }}" ]; then
+        if [ -n "$PLAYWRIGHT_STORAGE_STATE" ]; then
           echo "Populating auth state from GitHub secrets..."
-          echo '${{ secrets.PLAYWRIGHT_STORAGE_STATE }}' > .auth/user.json
+          echo "$PLAYWRIGHT_STORAGE_STATE" > .auth/user.json
         elif [ -f ".auth/user.json" ]; then
           echo "Using committed .auth/user.json state file..."
         else
