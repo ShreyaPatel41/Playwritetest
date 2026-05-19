@@ -1,9 +1,0 @@
---------------------------------------------------
->>> DEBUG INFO FOR AUTHENTICATION <<<
-Current page URL: https://grounded-topaz.vercel.app/dashboard
-Current page title: Try Grounded AI — AI Hallucination Testing by KiwiQA
---------------------------------------------------
-What is the current deal status for Meridian ERP Implementation? Include the stage, value, and close date.
-# Meridian ERP Implementation Summary
-
-We're tracking a $1.25M Meridian ERP Implementation deal currently in the **Proposal Review** stage as of mid-April 2026. This enterprise implementation represents significant expansion opportunity with strong momentum. Next step is stakeholder sign-off expected within the next two weeks.

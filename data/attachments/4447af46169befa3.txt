@@ -1,0 +1,9 @@
+--------------------------------------------------
+>>> DEBUG INFO FOR AUTHENTICATION <<<
+Current page URL: https://grounded-topaz.vercel.app/dashboard
+Current page title: Try Grounded AI — AI Hallucination Testing by KiwiQA
+--------------------------------------------------
+What is the current deal status for GlobalSoft SaaS Subscription? Include the stage, value, and close date.
+**Deal Summary:**
+
+GlobalTech's SaaS subscription deal is progressing well with a contract value of $875,000. The deal entered the "contract sent" stage on April 16th and is awaiting client signature. This enterprise subscription should close within the next 2-3 weeks.
