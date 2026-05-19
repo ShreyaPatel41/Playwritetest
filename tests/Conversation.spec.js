@@ -27,5 +27,18 @@ test("Check All component wrok on transcriptmodule", async ({ groundedPage, conv
     await test.step("check transcript module page", async () => {
         await conversation.transcriptmodulecheck();
     })
-})
+});
+test("Check Live Session module", async ({ groundedPage, conversation }) => {
+    const { page, browserContext } = groundedPage;
+    await conversation.clickConversation();
+    await test.step("Check Live Session module is working or not", async () => {
+        await conversation.livesessionmodule.click();
+        await expect(conversation.pageTitle).toContainText("Live Session");
+    })
+    await test.step("Write title on Live session", async () => {
+        await conversation.livesessiontitle.fill("Live Session Using Automation");
+        await expect(conversation.livesessiontitle).toHaveValue("Live Session Using Automation");
+    })
+
+});
 
