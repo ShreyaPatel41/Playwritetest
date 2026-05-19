@@ -3,5 +3,3 @@
 Current page URL: https://grounded-topaz.vercel.app/dashboard
 Current page title: Try Grounded AI — AI Hallucination Testing by KiwiQA
 --------------------------------------------------
-What is the current deal status for GlobalSoft SaaS Subscription? Include the stage, value, and close date.
-
